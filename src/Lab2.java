@@ -81,7 +81,7 @@ public class Lab2 {
                     case 6:
                         int amountValues=0;
                         while(amountValues<1) {
-                            System.out.println("How many values would you like to add my cracka?");
+                            System.out.println("How many values would you like to add?");
                             try {
                                 amountValues = sc.nextInt();
                                 if (amountValues<1) {System.out.println("Enter Positive Integer!");}
