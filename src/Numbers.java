@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /**
  * This class contains the dynamically allocated array and it's processing
  * Student Name: Fadi
@@ -39,12 +41,20 @@ public class Numbers {
      */
     void addValue(float value){
         if(stored<numbers.length) {
-            numbers[stored] = value;
+            numbers[stored] = value*2;
             stored++;
             System.out.println("Value Added!");
         }else {
             System.out.println("Array is full, value not added");
         }
+    }
+
+    /**
+     *
+     * @param scanner
+     */
+    void addValues(Scanner scanner){
+
     }
     /**
      * Calculates the average of all the values in the numbers array.

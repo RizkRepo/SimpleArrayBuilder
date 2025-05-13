@@ -17,6 +17,7 @@ public class Lab2 {
     public static void main(String[] args) {
         System.out.println("===========Welcome To Array Builder===========");
         Numbers numbers = new Numbers();
+        String file;
         try (Scanner sc = new Scanner(System.in)) {
             boolean willing=true;
             while (willing) {
@@ -78,6 +79,43 @@ public class Lab2 {
                         System.out.println("Factorial of Max: "+factorialMax +".00");
                         break;
                     case 6:
+                        int amountValues=0;
+                        while(amountValues<1) {
+                            System.out.println("How many values would you like to add my cracka?");
+                            try {
+                                amountValues = sc.nextInt();
+                                if (amountValues<1) {System.out.println("Enter Positive Integer!");}
+                            } catch (InputMismatchException e) {
+                                System.out.println("Input Must be Integer");
+                                sc.nextLine();
+                            }
+                        }
+                        for(int i = 0; i < amountValues; i++ ){
+                            System.out.println("Enter a positive float");
+                            value = -1;
+                            while(value < 0){
+                                try {
+                                    value = sc.nextFloat();
+                                    if (value < 0) {System.out.println("Enter a positive float! ");}
+                                } catch (InputMismatchException e) {
+                                    System.out.println("Enter a positive float");
+                                    sc.nextLine();
+                                }
+                            }
+                            numbers.addValue(value);
+                        }
+                        break;
+                    case 7:
+                        System.out.println("What file would you like to read from?");
+                        file = sc.nextLine();
+                        //TODO file reading
+                        break;
+                    case 8:
+                        System.out.println("What file would you like to write to?");
+                        file = sc.nextLine();
+                        //TODO file writing
+                        break;
+                    case 9:
                         System.out.println("Bye Bye!");
                         willing=false;
                         break;
@@ -97,10 +135,13 @@ public class Lab2 {
     public static void displayMenu(){
         System.out.println("Please Select one of the following options:");
         System.out.println("1. Initialize a default array");
-        System.out.println("2. Specify the max size of the array");
-        System.out.println("3. Add value to the array");
-        System.out.println("4. Display values in the array");
-        System.out.println("5. Display average of the values, minimum value, maximum value, max mod min, factorialMax");
-        System.out.println("6. Exit");
+        System.out.println("2. Specify the Max Size of the Array");
+        System.out.println("3. Add Value to the Array");
+        System.out.println("4. Display Values in the Array");
+        System.out.println("5. Display Average of the Values, Minimum Value, Maximum Value, Max Mod Min, Factorial Max");
+        System.out.println("6. Add Multiple Values to Array");
+        System.out.println("7. Read Values from File");
+        System.out.println("8. Save Values in File");
+        System.out.println("9. Exit");
     }
 }
