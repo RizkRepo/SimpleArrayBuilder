@@ -1,9 +1,11 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
+
 
 /**
  * This class contains the dynamically allocated array and it's processing
- * Student Name: Fadi
- * Student Number: Rizk
+ * Student Name: Fadi Rizk
+ * Student Number: 041174349
  * Course: CST8130 302 - Data Structures
  * CET-CS-Level 3
  * Professor James Mwangi PhD.
@@ -51,10 +53,23 @@ public class Numbers {
 
     /**
      *
-     * @param scanner
+     * @param amount, sc
      */
-    void addValues(Scanner scanner){
-
+    void addValues(int amount,Scanner sc){
+            for(int i = 0; i < amount; i++ ){
+                System.out.println("Enter a positive float");
+                float value = -1;
+                while(value < 0){
+                    try {
+                        value = sc.nextFloat();
+                        if (value < 0) {System.out.println("Enter a positive float! ");}
+                    } catch (InputMismatchException e) {
+                        System.out.println("Enter a positive float");
+                        sc.nextLine();
+                    }
+                }
+                addValue(value);
+        }
     }
     /**
      * Calculates the average of all the values in the numbers array.

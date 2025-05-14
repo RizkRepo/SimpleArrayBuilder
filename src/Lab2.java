@@ -1,7 +1,7 @@
 /**
  * This is the main method for array builder
- * Student Name: Fadi
- * Student Number: Rizk
+ * Student Name: Fadi Rizk
+ * Student Number: 041174349
  * Course: CST8130 302 - Data Structures
  * CET-CS-Level 3
  * Professor James Mwangi PhD.
