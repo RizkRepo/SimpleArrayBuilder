@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -16,7 +20,7 @@ public class Numbers {
     /**
      * Stores Float values.
      */
-    private Float[] numbers;
+    private final Float[] numbers;
     /**
      * Store the number of items currently in the array.
      */
@@ -24,7 +28,7 @@ public class Numbers {
     /**
      * Default Constructor
      */
-    Numbers() {
+    public Numbers() {
         numbers = new Float[4];
         stored=0;
     }
@@ -33,7 +37,7 @@ public class Numbers {
      * @param size - Max size of the numbers array
      */
 
-    Numbers(int size) {
+    public Numbers(int size) {
         numbers = new Float[size];
         stored=0;
     }
@@ -41,7 +45,7 @@ public class Numbers {
      * Adds a value in the array
      * @param value - value to add to array
      */
-    void addValue(float value){
+    public void addValue(float value){
         if(stored<numbers.length) {
             numbers[stored] = value*2;
             stored++;
@@ -55,7 +59,7 @@ public class Numbers {
      *
      * @param amount, sc
      */
-    void addValues(int amount,Scanner sc){
+    public void addValues(int amount,Scanner sc){
             for(int i = 0; i < amount; i++ ){
                 System.out.println("Enter a positive float");
                 float value = -1;
@@ -75,7 +79,7 @@ public class Numbers {
      * Calculates the average of all the values in the numbers array.
      * @return float value that represents the average
      */
-    float calcAverage() {
+    public float calcAverage() {
         if (stored != 0) {
             float sum = 0;
             for (int i = 0; i < stored; i++) {
@@ -89,7 +93,7 @@ public class Numbers {
      * Finds the Max, Min, and Modulus of the Max and Min, of the numbers array
      * @return float array that contains the Max, Min and Modulus
      */
-    float[] findMaxMin(){
+    public float[] findMaxMin(){
         float max= Float.NEGATIVE_INFINITY;
         float min= Float.POSITIVE_INFINITY;
         float modulo =-1;
@@ -111,7 +115,7 @@ public class Numbers {
      * Finds the Factorial of the Max
      * @return int that contains the factorial of the max of the numbers array
      */
-    int getFactorialMax(){
+    public int getFactorialMax(){
         float[] MaxMinMod = findMaxMin();
         int max = (int) (MaxMinMod[0]);
         int factorialMax=max;
@@ -131,5 +135,36 @@ public class Numbers {
             values.append(numbers[i]).append("0\n");
         }
         return values.toString();
+    }
+    public void readFile(String file){
+        try(BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line = br.readLine();
+            if(line!=null){
+                try {
+                    int fCheck= Integer.parseInt(line.trim());
+                    System.out.println(fCheck);
+                    if(fCheck<=((numbers.length)-stored)){
+                            while(((line=br.readLine())!=null)&&(fCheck!=0)) {
+                                System.out.println(line);
+                                numbers[stored] = Float.parseFloat((line.trim()));
+                                System.out.println(line);
+                                stored++;
+                                fCheck--;
+                            }
+                    }else{
+                        System.out.println("Array has insufficient space.");
+                    }
+                }catch (InputMismatchException e){
+                    System.out.println("File is improperly formatted");
+                }
+            }
+        }catch (FileNotFoundException e){
+            System.out.println("File not found");
+        }catch (IOException e){
+            System.out.println("Error reading file");
+        }
+    }
+    public void writeFile(){
+
     }
 }

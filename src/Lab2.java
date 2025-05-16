@@ -26,6 +26,7 @@ public class Lab2 {
                 int choice=0;
                 try{
                     choice = sc.nextInt();
+                    sc.nextLine();
                 }catch(InputMismatchException e){
                     sc.nextLine();
                 }
@@ -108,7 +109,7 @@ public class Lab2 {
                     case 7:
                         System.out.println("What file would you like to read from?");
                         file = sc.nextLine();
-                        //TODO file reading
+                        numbers.readFile(file);
                         break;
                     case 8:
                         System.out.println("What file would you like to write to?");
