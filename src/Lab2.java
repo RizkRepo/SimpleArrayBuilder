@@ -41,6 +41,7 @@ public class Lab2 {
                             System.out.println("Enter a size for your array: ");
                             try {
                                 size = sc.nextInt();
+                                sc.nextLine();
                                 if (size < 1) {System.out.println("Enter positive integer! ");}
                             } catch (InputMismatchException e) {
                                 System.out.println("Please enter an integer above zero ");
@@ -56,6 +57,7 @@ public class Lab2 {
                         while(value < 0){
                             try {
                                 value = sc.nextFloat();
+                                sc.nextLine();
                                 if (value < 0) {System.out.println("Enter a positive float! ");}
                             } catch (InputMismatchException e) {
                                 System.out.println("Enter a positive float");
@@ -85,26 +87,14 @@ public class Lab2 {
                             System.out.println("How many values would you like to add?");
                             try {
                                 amountValues = sc.nextInt();
+                                sc.nextLine();
                                 if (amountValues<1) {System.out.println("Enter Positive Integer!");}
                             } catch (InputMismatchException e) {
                                 System.out.println("Input Must be Integer");
                                 sc.nextLine();
                             }
                         }
-                        for(int i = 0; i < amountValues; i++ ){
-                            System.out.println("Enter a positive float");
-                            value = -1;
-                            while(value < 0){
-                                try {
-                                    value = sc.nextFloat();
-                                    if (value < 0) {System.out.println("Enter a positive float! ");}
-                                } catch (InputMismatchException e) {
-                                    System.out.println("Enter a positive float");
-                                    sc.nextLine();
-                                }
-                            }
-                            numbers.addValue(value);
-                        }
+                        numbers.addValues(amountValues,sc);
                         break;
                     case 7:
                         System.out.println("What file would you like to read from?");
@@ -114,7 +104,7 @@ public class Lab2 {
                     case 8:
                         System.out.println("What file would you like to write to?");
                         file = sc.nextLine();
-                        //TODO file writing
+                        numbers.writeFile(file);
                         break;
                     case 9:
                         System.out.println("Bye Bye!");

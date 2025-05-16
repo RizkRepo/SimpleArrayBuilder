@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -60,20 +57,26 @@ public class Numbers {
      * @param amount, sc
      */
     public void addValues(int amount,Scanner sc){
-            for(int i = 0; i < amount; i++ ){
-                System.out.println("Enter a positive float");
-                float value = -1;
-                while(value < 0){
-                    try {
-                        value = sc.nextFloat();
-                        if (value < 0) {System.out.println("Enter a positive float! ");}
-                    } catch (InputMismatchException e) {
-                        System.out.println("Enter a positive float");
-                        sc.nextLine();
+            if(!(amount>numbers.length)) {
+                for (int i = 0; i < amount; i++) {
+                    System.out.println("Enter a positive float");
+                    float value = -1;
+                    while (value < 0) {
+                        try {
+                            value = sc.nextFloat();
+                            if (value < 0) {
+                                System.out.println("Enter a positive float! ");
+                            }
+                        } catch (InputMismatchException e) {
+                            System.out.println("Enter a positive float");
+                            sc.nextLine();
+                        }
                     }
+                    addValue(value);
                 }
-                addValue(value);
-        }
+            }else{
+                System.out.println("Too Many Variables for Array");
+            }
     }
     /**
      * Calculates the average of all the values in the numbers array.
@@ -164,7 +167,15 @@ public class Numbers {
             System.out.println("Error reading file");
         }
     }
-    public void writeFile(){
-
+    public void writeFile(String file){
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+            bw.write(String.valueOf(stored));
+            for (int i = 0; i < stored; i++) {
+                bw.write(String.valueOf(numbers[i]));
+                bw.newLine();
+            }
+        }catch (IOException e){
+            System.out.println("Error writing file");
+        }
     }
 }
