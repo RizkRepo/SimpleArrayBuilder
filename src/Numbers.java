@@ -30,8 +30,8 @@ public class Numbers {
         stored=0;
     }
     /**
-     * Constructor that initializes the numbers array.
-     * @param size - Max size of the numbers array
+     * Constructor that initializes the "numbers" array.
+     * @param size - Max size of the "numbers" array
      */
 
     public Numbers(int size) {
@@ -139,6 +139,10 @@ public class Numbers {
         }
         return values.toString();
     }
+    /**
+     * Reads the array from a file, checking that the contents can fit within the array's bounds
+     * @param file - name of the file to read from
+     */
     public void readFile(String file){
         try(BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line = br.readLine();
@@ -148,34 +152,41 @@ public class Numbers {
                     System.out.println(fCheck);
                     if(fCheck<=((numbers.length)-stored)){
                             while(((line=br.readLine())!=null)&&(fCheck!=0)) {
-                                System.out.println(line);
                                 numbers[stored] = Float.parseFloat((line.trim()));
-                                System.out.println(line);
                                 stored++;
                                 fCheck--;
                             }
                     }else{
                         System.out.println("Array has insufficient space.");
                     }
+                System.out.println("****File read successfully****");
                 }catch (InputMismatchException e){
                     System.out.println("File is improperly formatted");
                 }
             }
         }catch (FileNotFoundException e){
-            System.out.println("File not found");
+            System.out.println("\n======File not found=====\n");
         }catch (IOException e){
             System.out.println("Error reading file");
         }
     }
-    public void writeFile(String file){
-        try(BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
-            bw.write(String.valueOf(stored));
-            for (int i = 0; i < stored; i++) {
-                bw.write(String.valueOf(numbers[i]));
-                bw.newLine();
+    /**
+     * Writes the array to a file, checking that the array is not empty first
+     * @param file - name of the file to write to
+     */
+    public void writeFile(String file) {
+        if (stored != 0) {
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+                bw.write(String.valueOf(stored));
+                for (int i = 0; i < stored; i++) {
+                    bw.write(String.valueOf(numbers[i]));
+                    bw.newLine();
+                }
+            } catch (IOException e) {
+                System.out.println("Error writing file");
             }
-        }catch (IOException e){
-            System.out.println("Error writing file");
+        }else{
+            System.out.println("No values to write, No file created!");
         }
     }
 }
