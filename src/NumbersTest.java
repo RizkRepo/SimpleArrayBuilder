@@ -1,15 +1,18 @@
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-
+/**
+ * This Class tests some of the methods of the numbers class
+ * Student Name: Fadi Rizk
+ * Student Number: 041174349
+ * Course: CST8130 302 - Data Structures
+ * CET-CS-Level 3
+ * Professor James Mwangi PhD.
+ * Declaration: I declare that this is my own original work and is free from Plagiarism
+ */
 public class NumbersTest {
 
     private Numbers numbers;
-    /**
-     * The Numbers class provides an array-based storage for floating-point values.
-     * The addValue method adds a new float value to this storage after doubling it,
-     * if there is space available in the array.
-     */
     public void setUp(){
         numbers = new Numbers();
     }
