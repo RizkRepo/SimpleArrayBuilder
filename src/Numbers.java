@@ -199,6 +199,7 @@ public class Numbers {
      */
     public void writeFile(String file) {
         if (stored != 0) {
+            System.out.println("Values Printed to File");
             try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
                 bw.write(String.valueOf(stored)); // Write count of values
                 bw.newLine();
